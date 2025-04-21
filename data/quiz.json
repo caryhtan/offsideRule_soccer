@@ -1,0 +1,44 @@
+[
+    {
+        "question": "Is this Offside? (Attacker behind second-last defender)",
+        "image": "Q1.jpeg",
+        "options": ["Onside", "Offside"],
+        "correct_answer": "Onside",
+        "explanation": "Onside because attacker is behind second-last defender at the time of pass."
+    },
+    {
+        "question": "Is this Offside? (Attacker ahead of second-last defender)",
+        "image": "Q2.jpeg",
+        "options": ["Onside", "Offside"],
+        "correct_answer": "Offside",
+        "explanation": "Offside because attacker is ahead of second-last defender at the time of pass."
+    },
+    {
+        "question": "Is this Offside? (Attacker's arm ahead of defender)",
+        "image": "Q3.jpeg",
+        "options": ["Onside", "Offside"],
+        "correct_answer": "Offside",
+        "explanation": "Offside because part of attacker's body is ahead of second-last defender at the time of pass."
+    },
+    {
+        "question": "Is this Offside? (Attacker level with second-last defender)",
+        "image": "Q4.jpeg",
+        "options": ["Onside", "Offside"],
+        "correct_answer": "Onside",
+        "explanation": "Onside because attacker is on same level as second-last defender at the time of pass."
+    },
+    {
+        "question": "Is this Offside? (Attacker's toe ahead of defender)",
+        "image": "Q5.jpeg",
+        "options": ["Onside", "Offside"],
+        "correct_answer": "Offside",
+        "explanation": "Offside because part of attacker's body is ahead of second-last defender at the time of pass."
+    },
+    {
+        "question": "Is this Offside? (Attacker in own half)",
+        "image": "Q6.jpeg",
+        "options": ["Onside", "Offside"],
+        "correct_answer": "Onside",
+        "explanation": "Onside because attacker is in their own half."
+    }
+]

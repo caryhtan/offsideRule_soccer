@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center home-content">
+    <h1 class="display-4 mb-4">Understanding the Offside Rule</h1>
+    
+    <!-- Added image above buttons -->
+    <div class="home-image-container mb-4">
+        <img src="{{ url_for('static', filename='images/H.png') }}" 
+             alt="Soccer players in offside position" 
+             class="img-fluid home-image">
+    </div>
+    
+    <p class="lead mb-4">Let's make understanding the offside rule easy and fun. Ready to dive in?</p>
+    
+    <!-- Buttons on same line -->
+    <div class="d-flex justify-content-center gap-3">
+        <a href="{{ url_for('learn', page_num=1) }}" class="btn btn-primary btn-lg">Start Lesson</a>
+        <a href="{{ url_for('quiz', question_num=1) }}" class="btn btn-outline-secondary btn-lg">Jump to Quiz</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+[
+    {
+        "title": "What Is Offside?",
+        "content": "A player is in an offside position if they are closer to the opponent's goal than the second-last defender at the time when the ball is passed to them.",
+        "image": "L1.png",
+        "description": "Onside scenario with attacker behind defenders"
+    },
+    {
+        "title": "\"Closer to the Goal\" Meaning",
+        "content": "Even if only a part of the attacker's body (like a toe or knee) is ahead of the second-last defender, they are still closer (so offside).",
+        "image": "L2.png",
+        "description": "Partial offside with attacker's toe ahead"
+    },
+    {
+        "title": "Timing Matters",
+        "content": "It only matters where the attacker is when the ball is passed, not when they receive it.",
+        "image": "L3.png",
+        "description": "Timing diagram showing pass moment"
+    },
+    {
+        "title": "Two Attackers Ahead of the Defender",
+        "content": "The player receiving the ball will still be offside, even if the other attacker (the one passing the ball) is ahead of the defender.",
+        "image": "L4.png",
+        "description": "Scenario with two attackers ahead"
+    },
+    {
+        "title": "You're Onside If...",
+        "content": "Player is in their own half",
+        "image": "L5.png",
+        "description": "Player in own half is always onside"
+    },
+    {
+        "title": "Exceptions: No Offside Here",
+        "content": "No offside offence for any throw-in\nNo offside offence for any goal-kick\nNo offside offence for any corner-kick",
+        "image": "L6_1.jpeg",
+        "description": "Set piece exceptions to offside"
+    }
+]

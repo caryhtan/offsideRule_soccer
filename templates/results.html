@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="results-content">
+    <h1 class="mb-4">Quiz Result</h1>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Your Score: <strong>{{ score }}/{{ total }}</strong></h2>
+            
+            {% if score == total %}
+                <p class="text-success">Perfect! You completely understand the offside rule!</p>
+            {% elif score >= total * 0.7 %}
+                <p>Great job! You understand the offside rule for most scenarios.</p>
+            {% else %}
+                <p class="text-warning">Keep practicing! Review the lessons to improve your understanding.</p>
+            {% endif %}
+            
+            <h3 class="mt-4">Quiz Explanation</h3>
+            
+            <div class="accordion" id="explanationsAccordion">
+                {% for item in explanations %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ loop.index }}">
+                        <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#collapse{{ loop.index }}" 
+                                aria-expanded="{% if loop.first %}true{% else %}false{% endif %}" 
+                                aria-controls="collapse{{ loop.index }}">
+                            Question {{ loop.index }}: 
+                            <span class="{% if item.user_answer == item.correct_answer %}text-success{% else %}text-danger{% endif %} ms-2">
+                                {% if item.user_answer == item.correct_answer %}✓ Correct{% else %}✗ Incorrect{% endif %}
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="collapse{{ loop.index }}" 
+                         class="accordion-collapse collapse {% if loop.first %}show{% endif %}" 
+                         aria-labelledby="heading{{ loop.index }}" 
+                         data-bs-parent="#explanationsAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Your answer:</strong> {{ item.user_answer }}</p>
+                            <p><strong>Correct answer:</strong> {{ item.correct_answer }}</p>
+                            <p>{{ item.explanation }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="d-grid gap-2 col-md-6 mx-auto">
+        <a href="{{ url_for('learn', page_num=1) }}" class="btn btn-primary">Restart Lesson</a>
+        <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">Return Home</a>
+    </div>
+</div>
+{% endblock %}

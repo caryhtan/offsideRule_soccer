@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="quiz-content">
+    <h1>Quiz - Question {{ question_num }}</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ question_data.question }}</h5>
+            
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='images/' + question_data.image) }}" 
+                     alt="Quiz scenario" 
+                     class="quiz-image">
+            </div>
+            
+            <form id="quizForm" method="POST" action="{{ url_for('quiz', question_num=question_num) }}">
+                <div class="form-group mt-4">
+                    {% for option in question_data.options %}
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
+                        <label class="form-check-label" for="option{{ loop.index }}">
+                            {{ option }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                    <div class="invalid-feedback" id="answerError">
+                        Please select an answer before proceeding.
+                    </div>
+                </div>
+                
+                <div class="navigation-container">
+                    <div style="width: 120px;"></div> <!-- Spacer for consistent layout -->
+                    
+                    <button type="submit" class="btn btn-primary">
+                        {% if question_num < total_questions %}Next Question{% else %}See Results{% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
