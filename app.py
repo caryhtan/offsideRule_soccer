@@ -82,7 +82,6 @@ def quiz(question_num):
 
 @app.route('/results')
 def results():
-    print(user_data['page_times'])
 
     # Calculate score
     score = 0
