@@ -1,22 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="text-center home-content">
-    <h1 class="display-4 mb-4">Understanding the Offside Rule</h1>
-    
-    <!-- Added image above buttons -->
-    <div class="home-image-container mb-4">
-        <img src="{{ url_for('static', filename='images/H.png') }}" 
-             alt="Soccer players in offside position" 
-             class="img-fluid home-image">
-    </div>
-    
-    <p class="lead mb-4">Let's make understanding the offside rule easy and fun. Ready to dive in?</p>
-    
-    <!-- Buttons on same line -->
-    <div class="d-flex justify-content-center gap-3">
-        <a href="{{ url_for('learn', page_num=1) }}" class="btn btn-primary btn-lg">Start Lesson</a>
-        <a href="{{ url_for('quiz', question_num=1) }}" class="btn btn-outline-secondary btn-lg">Jump to Quiz</a>
+<div class="container text-center pt-5 home-main-content">
+    <h1 class="fs-2 fw-bold mb-3">Master the Offside Rule!</h1>
+    <p class="mb-5">Understand when players are offside in soccer with interactive examples</p>
+    <img src="{{ url_for('static', filename='images/home.png') }}" 
+    alt="referee holding offside flag"
+    class="w-75 ms-5">
+
+    <div class="mt-5 pt-4 home-btns-cont">
+        <a href="{{ url_for('learn', page_num=1) }}">
+            <span>Start Lesson</span>
+            <img src="{{ url_for('static', filename='images/home_btn1.png') }}" alt="flag">
+        </a>
+        <a href="{{ url_for('quiz', question_num=1) }}">
+            <span>Take Quiz</span>
+            <img src="{{ url_for('static', filename='images/home_btn2.png') }}" alt="flag">
+        </a>
     </div>
 </div>
+
 {% endblock %}

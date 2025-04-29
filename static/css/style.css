@@ -1,3 +1,78 @@
+/* home page styles start */
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+/* variables */
+
+:root {
+    --dark-grey: #434343;
+    --light-grey: #efefef;
+    --accent: #f1c232;
+    --base: #fff2cc;
+}
+
+body {
+    background-color: var(--base);
+}
+
+.nav__container {
+    background-color: var(--light-grey);
+}
+
+nav a {
+    color: var(--dark-grey);
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--accent)
+}
+
+.home-main-content h1, p {
+    color: var(--dark-grey);
+}
+
+.home-main-content > img {
+    max-width: 400px;
+} 
+
+.home-btns-cont {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.home-btns-cont a {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border: none;
+    color: var(--dark-grey);
+    background: var(--accent);
+    border-radius: 12px;
+    border: 2px solid white;
+}
+
+.home-btns-cont a img {
+    width: 20px;
+    height: 20px;
+}
+
+.home-btns-cont a:hover {
+    border: 2px dashed var(--dark-grey);
+} 
+
+/* home page styles end */
+
+
 .learning-content, .quiz-content {
     max-width: 800px;
     margin: 0 auto;
