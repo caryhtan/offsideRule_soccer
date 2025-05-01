@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offside Rule Learning App</title>
+    <title>OffsidePro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <!-- Poppins font family -->
@@ -13,17 +14,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- nav bar -->
-    <div class="nav__container">
-        <nav class="container text-center d-flex justify-content-center gap-5 py-4">
-            <a href="{{ url_for('home') }}" class="fw-bold">Home</a>
-            <a href="{{ url_for('learn', page_num=1) }}">Lesson</a>
-            <a href="{{ url_for('quiz', question_num=1) }}">Quiz</a>
+    <!-- Header with nav and theme switcher -->
+    <header class="header-container">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="{{ url_for('home') }}">
+                        <i class="fas fa-flag-checkered"></i>
+                        <span>OffsidePro</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                        <li><a href="{{ url_for('learn', page_num=1) }}" class="nav-link">Learn</a></li>
+                        <li><a href="{{ url_for('quiz', question_num=1) }}" class="nav-link">Quiz</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="theme-toggle">
+                    <button id="theme-toggle-btn">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                
+                <div class="mobile-menu-toggle">
+                    <button id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile menu (hidden by default) -->
+    <div class="mobile-menu">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('learn', page_num=1) }}">Learn</a></li>
+                <li><a href="{{ url_for('quiz', question_num=1) }}">Quiz</a></li>
+            </ul>
         </nav>
     </div>
-    <div>
+    
+    <main>
         {% block content %}{% endblock %}
-    </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="footer-content text-center">
+                <div class="footer-logo text-center">
+                    <i class="fas fa-flag-checkered"></i>
+                    <span>OffsidePro</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>

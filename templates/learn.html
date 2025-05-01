@@ -1,70 +1,108 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="learning-content">
-    <h1>{{ page_data.title }}</h1>
-    
-    <div class="card">
-        <div class="card-body">
-            <p class="card-text">{{ page_data.content | replace('\n', '<br>') | safe }}</p>
-            
-            <div class="text-center">
-                {% if page_num == 6 %}
-                <!-- Special layout for lesson 6 -->
-                <div class="row three-images-container">
-                    <div class="col-md-4">
-                        <img src="{{ url_for('static', filename='images/L6_1.jpeg') }}" 
-                             alt="Corner kick exception" 
-                             class="img-fluid scenario-image mb-2">
-                        <p class="image-caption">Corner Kick</p>
+<section class="learn-hero">
+    <div class="container">
+        <div class="learn-hero-content">
+            <div class="learn-header">
+                <h1 class="learn-title">{{ page_data.title }}</h1>
+                <div class="lesson-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {{ (page_num / total_pages) * 100 }}%"></div>
                     </div>
-                    <div class="col-md-4">
-                        <img src="{{ url_for('static', filename='images/L6_2.png') }}" 
-                             alt="Throw-in exception" 
-                             class="img-fluid scenario-image mb-2">
-                        <p class="image-caption">Throw-in</p>
-                    </div>
-                    <div class="col-md-4">
-                        <img src="{{ url_for('static', filename='images/L6_3.jpeg') }}" 
-                             alt="Own half exception" 
-                             class="img-fluid scenario-image mb-2">
-                        <p class="image-caption">Own Half</p>
-                    </div>
+                    <span class="progress-text">{{ page_num }}/{{ total_pages }}</span>
                 </div>
-                {% else %}
-                <!-- Regular single image for other lessons -->
-                <img src="{{ url_for('static', filename='images/' + page_data.image) }}" 
-                     alt="{{ page_data.description }}" 
-                     class="scenario-image">
-                {% endif %}
+            </div>
+            
+            <div class="navigation-controls">
+                <div class="nav-prev">
+                    {% if page_num > 1 %}
+                        <a href="{{ url_for('learn', page_num=page_num-1) }}" class="btn btn-outline">
+                            <i class="fas fa-chevron-left"></i> Prev
+                        </a>
+                    {% else %}
+                        <div class="btn-placeholder"></div>
+                    {% endif %}
+                </div>
+                
+                <div class="nav-pages">
+                    <ul class="page-dots">
+                        {% for p in range(1, total_pages + 1) %}
+                            <li class="page-dot {% if p == page_num %}active{% endif %}">
+                                <a href="{{ url_for('learn', page_num=p) }}" aria-label="Go to lesson {{ p }}">
+                                    <span class="dot-tooltip">{{ p }}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="nav-next">
+                    {% if page_num < total_pages %}
+                        <a href="{{ url_for('learn', page_num=page_num+1) }}" class="btn btn-primary">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('quiz', question_num=1) }}" class="btn btn-success">
+                            Quiz <i class="fas fa-arrow-right"></i>
+                        </a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-    
-    <div class="navigation-container">
-        {% if page_num > 1 %}
-            <a href="{{ url_for('learn', page_num=page_num-1) }}" class="btn btn-outline-primary">Previous</a>
-        {% else %}
-            <div style="width: 120px;"></div>
-        {% endif %}
-        
-        <div class="pagination-container">
-            <nav aria-label="Lesson navigation">
-                <ul class="pagination justify-content-center">
-                    {% for p in range(1, total_pages + 1) %}
-                        <li class="page-item {% if p == page_num %}active{% endif %}">
-                            <a class="page-link" href="{{ url_for('learn', page_num=p) }}">{{ p }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </nav>
+</section>
+
+<section class="lesson-content">
+    <div class="container">
+        <div class="lesson-container">
+            <div class="lesson-card">
+                <div class="lesson-text">
+                    <p class="lesson-body">{{ page_data.content | replace('\n', '<br>') | safe }}</p>
+                </div>
+                
+                <div class="lesson-visual">
+                    {% if page_num == 6 %}
+                    <!-- Special layout for lesson 6 -->
+                    <div class="multi-image-grid">
+                        <div class="image-item">
+                            <div class="image-wrapper">
+                                <div class="fixed-rectangle" style="background-color: var(--color-primary);"></div>
+                            </div>
+                            <p class="image-caption">Corner Kick</p>
+                        </div>
+                        <div class="image-item">
+                            <div class="image-wrapper">
+                                <div class="fixed-rectangle" style="background-color: var(--color-secondary);"></div>
+                            </div>
+                            <p class="image-caption">Throw-in</p>
+                        </div>
+                        <div class="image-item">
+                            <div class="image-wrapper">
+                                <div class="fixed-rectangle" style="background-color: var(--color-accent);"></div>
+                            </div>
+                            <p class="image-caption">Own Half</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <!-- Regular single rectangle for other lessons -->
+                    <div class="single-image-container">
+                        <div class="fixed-rectangle" style="background-color: var(--color-primary);"></div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="summary-card">
+                <div class="summary-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="summary-text">
+                    <h3>Key Takeaway</h3>
+                    <p>{{ page_data.description }}</p>
+                </div>
+            </div>
         </div>
-        
-        {% if page_num < total_pages %}
-            <a href="{{ url_for('learn', page_num=page_num+1) }}" class="btn btn-primary">Next</a>
-        {% else %}
-            <a href="{{ url_for('quiz', question_num=1) }}" class="btn btn-success">Start Quiz</a>
-        {% endif %}
     </div>
-</div>
+</section>
 {% endblock %}

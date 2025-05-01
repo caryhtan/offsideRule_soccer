@@ -60,11 +60,16 @@ def quiz(question_num):
                                 question_num=question_num,
                                 total_questions=len(quiz_data))
         
-        user_data['quiz_answers'].append({
-            'question': question_num,
-            'answer': answer,
-            'timestamp': datetime.now().isoformat()
-        })
+        existing_answer = next((a for a in user_data['quiz_answers'] if a['question'] == question_num), None)
+        if existing_answer:
+            existing_answer['answer'] = answer
+            existing_answer['timestamp'] = datetime.now().isoformat()
+        else:
+            user_data['quiz_answers'].append({
+                'question': question_num,
+                'answer': answer,
+                'timestamp': datetime.now().isoformat()
+            })
         
         # Redirect to next question or results
         if question_num < len(quiz_data):
@@ -82,20 +87,36 @@ def quiz(question_num):
 
 @app.route('/results')
 def results():
-
     # Calculate score
     score = 0
     explanations = []
+    total_questions = len(quiz_data)
     
-    for i, answer in enumerate(user_data['quiz_answers']):
-        if answer['answer'] == quiz_data[i]['correct_answer']:
+    # Ensure we have answers for all questions
+    if len(user_data['quiz_answers']) != total_questions:
+        return redirect(url_for('quiz', question_num=1))
+    
+    # Sort answers by question number to ensure correct order
+    sorted_answers = sorted(user_data['quiz_answers'], key=lambda x: x['question'])
+    
+    for answer in sorted_answers:
+        question_num = answer['question'] - 1  # Convert to 0-based index
+        if question_num < 0 or question_num >= total_questions:
+            continue  # Skip invalid question numbers
+            
+        is_correct = answer['answer'] == quiz_data[question_num]['correct_answer']
+        if is_correct:
             score += 1
+            
         explanations.append({
-            'question': quiz_data[i]['question'],
+            'question': quiz_data[question_num]['question'],
             'user_answer': answer['answer'],
-            'correct_answer': quiz_data[i]['correct_answer'],
-            'explanation': quiz_data[i]['explanation']
+            'correct_answer': quiz_data[question_num]['correct_answer'],
+            'explanation': quiz_data[question_num]['explanation']
         })
+    
+    # Ensure score is within valid range
+    score = min(max(score, 0), total_questions)
     
     # Reset user data for new session
     user_data['quiz_answers'] = []
@@ -103,7 +124,7 @@ def results():
     
     return render_template('results.html',
                          score=score,
-                         total=len(quiz_data),
+                         total=total_questions,
                          explanations=explanations)
 
 if __name__ == '__main__':

@@ -1,40 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="quiz-content">
-    <h1>Quiz - Question {{ question_num }}</h1>
-    
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{ question_data.question }}</h5>
-            
-            <div class="text-center">
-                <img src="{{ url_for('static', filename='images/' + question_data.image) }}" 
-                     alt="Quiz scenario" 
-                     class="quiz-image">
+<section class="quiz-hero">
+    <div class="container">
+        <div class="quiz-header">
+            <h1 class="quiz-title">Quiz - Question {{ question_num }}</h1>
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: {{ (question_num / total_questions) * 100 }}%"></div>
+                </div>
+                <span class="progress-text">{{ question_num }}/{{ total_questions }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="quiz-content">
+    <div class="container">
+        <div class="quiz-card">
+            <div class="quiz-question">
+                <h2>{{ question_data.question }}</h2>
+                
+                <div class="quiz-image-container">
+                    <img src="{{ url_for('static', filename='images/' + question_data.image) }}" 
+                         alt="Quiz scenario" 
+                         class="quiz-image"
+                         loading="lazy">
+                </div>
             </div>
             
             <form id="quizForm" method="POST" action="{{ url_for('quiz', question_num=question_num) }}">
-                <div class="form-group mt-4">
+                <div class="quiz-options">
                     {% for option in question_data.options %}
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
-                        <label class="form-check-label" for="option{{ loop.index }}">
-                            {{ option }}
+                    <div class="quiz-option">
+                        <input type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
+                        <label for="option{{ loop.index }}">
+                            <span class="option-number">{{ loop.index }}.</span>
+                            <span class="option-text">{{ option }}</span>
                         </label>
                     </div>
                     {% endfor %}
                 </div>
                 
-                <div class="navigation-container">
-                    <div style="width: 120px;"></div> <!-- Spacer for consistent layout -->
-                    
+                <div class="quiz-navigation">
                     <button type="submit" class="btn btn-primary">
-                        {% if question_num < total_questions %}Next Question{% else %}See Results{% endif %}
+                        {% if question_num < total_questions %}
+                            Next Question <i class="fas fa-chevron-right"></i>
+                        {% else %}
+                            See Results <i class="fas fa-trophy"></i>
+                        {% endif %}
                     </button>
                 </div>
             </form>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}
