@@ -37,7 +37,7 @@ def learn(page_num):
     user_data['current_page'] = page_num
     
     page_data = learning_data[page_num - 1]
-    return render_template('learn.html', 
+    return render_template('lesson1.html', 
                          page_data=page_data,
                          page_num=page_num,
                          total_pages=len(learning_data))

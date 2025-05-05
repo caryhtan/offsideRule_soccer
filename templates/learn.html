@@ -17,7 +17,7 @@
             <div class="navigation-controls">
                 <div class="nav-prev">
                     {% if page_num > 1 %}
-                        <a href="{{ url_for('learn', page_num=page_num-1) }}" class="btn btn-outline">
+                        <a href="{{ url_for('learn', page_num=page_num-1) }}" class="btn btn-primary">
                             <i class="fas fa-chevron-left"></i> Prev
                         </a>
                     {% else %}
@@ -62,34 +62,7 @@
                 </div>
                 
                 <div class="lesson-visual">
-                    {% if page_num == 6 %}
-                    <!-- Special layout for lesson 6 -->
-                    <div class="multi-image-grid">
-                        <div class="image-item">
-                            <div class="image-wrapper">
-                                <div class="fixed-rectangle" style="background-color: var(--color-primary);"></div>
-                            </div>
-                            <p class="image-caption">Corner Kick</p>
-                        </div>
-                        <div class="image-item">
-                            <div class="image-wrapper">
-                                <div class="fixed-rectangle" style="background-color: var(--color-secondary);"></div>
-                            </div>
-                            <p class="image-caption">Throw-in</p>
-                        </div>
-                        <div class="image-item">
-                            <div class="image-wrapper">
-                                <div class="fixed-rectangle" style="background-color: var(--color-accent);"></div>
-                            </div>
-                            <p class="image-caption">Own Half</p>
-                        </div>
-                    </div>
-                    {% else %}
-                    <!-- Regular single rectangle for other lessons -->
-                    <div class="single-image-container">
-                        <div class="fixed-rectangle" style="background-color: var(--color-primary);"></div>
-                    </div>
-                    {% endif %}
+                    {% block lessoncontent %} {% endblock %}
                 </div>
             </div>
             

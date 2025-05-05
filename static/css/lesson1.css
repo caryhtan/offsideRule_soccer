@@ -1,0 +1,322 @@
+.field-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+    margin: 20px auto;
+    background-size: cover;
+    background-position: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.player {
+    width: 8%;
+    height: 0;
+    padding-bottom: 8%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.defender:nth-child(1) { top: 45%; left: 69.1%; }
+.defender:nth-child(2) { top: 75%; left: 62.5%; }
+.defender:nth-child(3) { top: 50%; left: 56.25%; }
+
+.attacker:nth-child(4) { 
+    top: 17.5%; 
+    left: 62.5%;
+    cursor: grab;
+}
+
+.attacker:nth-child(4):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+    animation: pulse 1.5s infinite;
+}
+
+.attacker:nth-child(4):active {
+    cursor: grabbing;
+    transform: scale(1.05);
+}
+
+.attacker:nth-child(5) { top: 62.5%; left: 37.5%; }
+
+.offside-line {
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 75.6%;
+    width: 2px;
+    background-color: rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.goalie {
+    width: 7%;
+    height: 0;
+    padding-bottom: 7%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 41.25%;
+    right: 2%;
+}
+
+.soccer-ball {
+    position: absolute;
+    font-size: clamp(10px, 1.2vw, 16px);
+    top: 74%;
+    left: 43%;
+    z-index: 2;
+    transform: scale(0.9);
+    transition: font-size 0.2s ease;
+}
+
+.passing-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#offsideStatus {
+    background-color: rgb(0, 255, 0);
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    padding: 0.5% 1.5%;
+    border-radius: 4px;
+    font-size: clamp(12px, 1.5vw, 18px);
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+}
+
+.field-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    margin: 20px auto;
+    background-image: url("{{ url_for('static', filename='images/field.png') }}");
+    background-size: cover;
+    background-position: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.player {
+    width: 8%;
+    height: 0;
+    padding-bottom: 8%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.defender {
+    background-image: url("{{ url_for('static', filename='images/defender.png') }}");
+}
+
+.attacker {
+    background-image: url("{{ url_for('static', filename='images/attacker.png') }}");
+}
+
+.defender:nth-child(1) { top: 45%; left: 69.1%; }
+.defender:nth-child(2) { top: 75%; left: 62.5%; }
+.defender:nth-child(3) { top: 50%; left: 56.25%; }
+
+.attacker:nth-child(4) { 
+    top: 17.5%; 
+    left: 62.5%;
+    cursor: grab;
+}
+
+.attacker:nth-child(4):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(19, 19, 19, 0.8));
+    animation: pulse 1.5s infinite;
+}
+
+.attacker:nth-child(4):active {
+    cursor: grabbing;
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)); }
+    50% { filter: drop-shadow(0 0 25px rgba(255, 255, 255, 1)); }
+    100% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)); }
+}
+
+.attacker:nth-child(5) { top: 62.5%; left: 37.5%; }
+
+.field-container::after {
+    content: '';
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 75.6%;
+    width: 2px;
+    background-color: rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.goalie {
+    width: 7%;
+    height: 0;
+    padding-bottom: 7%;
+    position: absolute;
+    background-image: url("{{ url_for('static', filename='images/goalie.png') }}");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 41.25%;
+    right: 2%;
+}
+
+.soccer-ball {
+    position: absolute;
+    font-size: clamp(12px, 1.5vw, 20px);
+    top: 74%;
+    left: 43%;
+    z-index: 2;
+}
+
+.passing-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#offsideStatus {
+    background-color: rgb(217, 255, 0);
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    padding: 0.5% 1.5%;
+    border-radius: 4px;
+    font-size: clamp(14px, 1.2vw, 18px);
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.instructions {
+    text-align: center;
+    margin: 20px auto;
+    font-size: clamp(16px, 1.5vw, 20px);
+    color: #333;
+    animation: bounce 2s infinite;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.arrow-container {
+    position: absolute;
+    top: 19%;
+    left: 55%;
+    width: 5%;
+    height: 0;
+    padding-bottom: 5%;
+    animation: pointRight 1.5s infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-top: 1.2vw solid transparent;
+    border-bottom: 1.2vw solid transparent;
+    border-left: 2.4vw solid rgba(231, 231, 231, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+@keyframes pointRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
+
+@media (max-width: 768px) {
+    .field-container {
+        margin: 10px auto;
+    }
+
+    .player {
+        width: 10%;
+        padding-bottom: 10%;
+    }
+
+    .goalie {
+        width: 9%;
+        padding-bottom: 9%;
+    }
+
+    #offsideStatus {
+        padding: 1% 2%;
+    }
+}
+
+@media (max-width: 480px) {
+    .field-container {
+        margin: 5px auto;
+    }
+
+    .player {
+        width: 12%;
+        padding-bottom: 12%;
+    }
+
+    .goalie {
+        width: 11%;
+        padding-bottom: 11%;
+    }
+
+    .instructions {
+        font-size: 14px;
+    }
+}
