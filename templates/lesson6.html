@@ -1,0 +1,22 @@
+{% extends "learn.html" %}
+
+{% block lessoncontent %}
+
+<style>
+    .lesson_6_img_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .lesson_6_img_container > img {
+        height: 100%;
+    }
+</style>
+<div class="lesson_6_img_container">
+    <img src="{{ url_for('static', filename='images/L6_1.jpeg') }}" alt="">
+    <img src="{{ url_for('static', filename='images/L6_2.png') }}" alt="">
+    <img src="{{ url_for('static', filename='images/L6_3.jpeg') }}" alt="">
+</div>
+    
+{% endblock %}

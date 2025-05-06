@@ -1,9 +1,9 @@
 [
     {
         "title": "What Is Offside?",
-        "content": "A player is in an offside position if they are closer to the opponent's goal than the second-last defender at the time when the ball is passed to them.",
+        "content": "A player is offside if they're nearer the goal than the ball and second-last defender (including the goalkeeper) when the ball is passed.",
         "image": "L1.png",
-        "description": "Onside scenario with attacker behind defenders"
+        "description": "Offside = closer to goal than ball and 2nd-last defender when ball is passed."
     },
     {
         "title": "\"Closer to the Goal\" Meaning",
@@ -19,7 +19,7 @@
     },
     {
         "title": "Two Attackers Ahead of the Defender",
-        "content": "The player receiving the ball will still be offside, even if the other attacker (the one passing the ball) is ahead of the defender.",
+        "content": "The player receiving the ball will still be onside because the receiver is behind the ball.",
         "image": "L4.png",
         "description": "Scenario with two attackers ahead"
     },
