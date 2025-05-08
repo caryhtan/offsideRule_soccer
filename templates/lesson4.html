@@ -1,5 +1,53 @@
 {% extends "learn.html" %}
 
 {% block lessoncontent %}
-    <img src="{{ url_for('static', filename='images/L4.png') }}" alt="">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/lesson4.css') }}">
+
+<style>
+
+    .field-container {
+        background-image: url("{{ url_for('static', filename='images/field.png') }}");
+    }
+
+    .defender {
+        background-image: url("{{ url_for('static', filename='images/defender.png') }}");
+    }
+    
+    .attacker {
+        background-image: url("{{ url_for('static', filename='images/attacker.png') }}");
+    }
+
+    .goalie {
+        background-image: url("{{ url_for('static', filename='images/goalie.png') }}");
+    }
+    
+</style>
+
+<ul>
+    <li style="display: flex;">Drag the attacker pointed by arrow to right and notice the point he's offside.</li>
+    <li style="display: flex; align-items: center; justify-content: space-between; gap: 10px; max-width: 200px;">Attackers color: <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #ffcdc5;"></span></li>
+    <li style="display: flex; align-items: center; justify-content: space-between; gap: 10px; max-width: 200px;">Defenders color: <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: red;"></span></li>
+</ul>
+
+<div class="field-container">
+    <div class="player defender"></div>
+    <div class="player defender"></div>
+    <div class="player defender"></div>
+    <div class="player attacker" id="draggableAttacker"></div>
+    <div class="player attacker"></div>
+    <div class="goalie"></div>
+    <div class="soccer-ball">⚽</div>
+    <h2 id="offsideStatus">Onside</h2>
+    <div class="arrow-container">
+      <div class="arrow"></div>
+    </div>
+    <svg class="passing-line">
+        <line id="passLine" x1="0" y1="0" x2="0" y2="0" stroke="#ffffff" stroke-width="2" stroke-dasharray="5,5"/>
+    </svg>
+</div>
+
+<script src="{{ url_for('static', filename='js/lesson4.js')}}">
+</script>
+
 {% endblock %}

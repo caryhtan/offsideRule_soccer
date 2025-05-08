@@ -25,7 +25,7 @@
     },
     {
         "title": "You're Onside If...",
-        "content": "Player is in their own half",
+        "content": "Player is in their own half at the time of pass.",
         "image": "L5.png",
         "description": "Player in own half is always onside"
     },

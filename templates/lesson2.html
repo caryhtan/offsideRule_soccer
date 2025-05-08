@@ -1,5 +1,38 @@
 {% extends "learn.html" %}
 
 {% block lessoncontent %}
-    <img src="{{ url_for('static', filename='images/L2.png') }}" alt="">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/lesson2.css') }}">
+
+<style>
+    .field-container {
+        background-image: url("{{ url_for('static', filename='images/l2/background.png') }}");
+    }
+
+    .defender {
+        background-image: url("{{ url_for('static', filename='images/l2/defender.png') }}");
+    }
+    
+    .attacker {
+        background-image: url("{{ url_for('static', filename='images/l2/attacker.png') }}");
+    }
+</style>
+
+<ul>
+    <li>Drag the attacker to the right and notice when they're offside.</li>
+    <li style="display: flex; align-items: center; justify-content: space-between; gap: 10px; max-width: 200px;">Attackers color: <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #ff4200;"></span></li>
+    <li style="display: flex; align-items: center; justify-content: space-between; gap: 10px; max-width: 200px;">Defenders color: <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #ffe600;"></span></li>
+</ul>
+
+<div class="field-container">
+    <div class="player defender"></div>
+    <div class="player attacker" id="draggableAttacker"></div>
+    <h2 id="offsideStatus">Onside</h2>
+    <div class="arrow-container">
+        <div class="arrow"></div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/lesson2.js')}}"></script>
+
 {% endblock %}
