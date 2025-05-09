@@ -2,37 +2,31 @@
     {
         "title": "What Is Offside?",
         "content": "A player is offside if they're nearer the goal than the ball and second-last defender (including the goalkeeper) when the ball is passed.",
-        "image": "L1.png",
         "description": "Offside = closer to goal than ball and 2nd-last defender when ball is passed."
     },
     {
         "title": "\"Closer to the Goal\" Meaning",
         "content": "Even if only a part of the attacker's body (like a toe or knee) is ahead of the second-last defender, they are still closer (so offside).",
-        "image": "L2.png",
         "description": "Partial offside with attacker's toe ahead"
     },
     {
-        "title": "Timing Matters",
-        "content": "It only matters where the attacker is when the ball is passed, not when they receive it.",
-        "image": "L3.png",
-        "description": "Timing diagram showing pass moment"
+        "title": "Position at the Kick",
+        "content": "During a free kick, an attacker is only offside if they are in an offside position at the moment the ball is kicked, not when they receive it.",
+        "description": "Position of attacker at the time of freekick is important."
     },
     {
         "title": "Two Attackers Ahead of the Defender",
         "content": "The player receiving the ball will still be onside because the receiver is behind the ball.",
-        "image": "L4.png",
         "description": "Scenario with two attackers ahead"
     },
     {
         "title": "You're Onside If...",
         "content": "Player is in their own half at the time of pass.",
-        "image": "L5.png",
         "description": "Player in own half is always onside"
     },
     {
         "title": "Exceptions: No Offside Here",
-        "content": "No offside offence for any throw-in\nNo offside offence for any goal-kick\nNo offside offence for any corner-kick",
-        "image": "L6_1.jpeg",
+        "content": "No offside offence for any throw-in, goal-kick, and corner-kick.",
         "description": "Set piece exceptions to offside"
     }
 ]

@@ -1,12 +1,37 @@
-
 const attacker = document.getElementById('draggableAttacker');
 const offsideStatus = document.getElementById('offsideStatus');
 const passLine = document.getElementById('passLine');
-const otherAttacker = document.querySelector('.attacker:nth-child(5)');
+const otherAttacker = document.getElementById('staticAttacker');
 const fieldContainer = document.querySelector('.field-container');
+const resetBtn = document.getElementById('resetBtn');
+const offsideLine = document.querySelector('.offside-line');
 let isDragging = false;
 let startX;
 let startLeftPercent;
+
+// Initialize positions
+const initialPositions = {
+    draggableAttacker: { left: 5, top: 8 },
+    staticAttacker: { left: 0, top: 62.5 }
+};
+
+// Movement constraints
+const movementConstraints = {
+    minLeft: initialPositions.draggableAttacker.left, // Can't move left of initial position (5%)
+    maxLeft: 60 // New maximum left position (60%)
+};
+
+function resetPositions() {
+    attacker.style.left = `${initialPositions.draggableAttacker.left}%`;
+    attacker.style.top = `${initialPositions.draggableAttacker.top}%`;
+    attacker.style.transition = 'left 0.3s ease-out';
+    updateOffsideStatus();
+    updatePassingLine();
+    // Remove transition after animation completes
+    setTimeout(() => {
+        attacker.style.transition = 'none';
+    }, 300);
+}
 
 function getAttackerRightPosition(attackerLeft) {
     const attackerWidthPercent = (attacker.offsetWidth / fieldContainer.offsetWidth) * 100;
@@ -30,14 +55,15 @@ function updatePassingLine() {
 }
 
 function updateOffsideStatus() {
-    const attackerLeft = parseFloat(attacker.style.left || '62.5');
+    const attackerLeft = parseFloat(attacker.style.left || initialPositions.draggableAttacker.left);
     const attackerRight = getAttackerRightPosition(attackerLeft);
-    const offsideLinePosition = 76.9; 
+    const offsideLinePosition = 32; 
     
     const isOffside = attackerRight > offsideLinePosition;
     
     offsideStatus.textContent = isOffside ? 'Offside' : 'Onside';
     offsideStatus.style.backgroundColor = isOffside ? 'rgb(255, 0, 0)' : 'rgb(0, 255, 0)';
+    offsideLine.style.display = isOffside ? 'block' : 'none';
     
     if (isOffside) {
         attacker.style.animation = 'pulse 1s infinite';
@@ -46,10 +72,11 @@ function updateOffsideStatus() {
     }
 }
 
+// Event Listeners
 attacker.addEventListener('mousedown', (e) => {
     isDragging = true;
     startX = e.clientX;
-    startLeftPercent = parseFloat(attacker.style.left || '62.5');
+    startLeftPercent = parseFloat(attacker.style.left || initialPositions.draggableAttacker.left);
     attacker.style.transition = 'none';
     e.preventDefault();
 });
@@ -60,7 +87,15 @@ document.addEventListener('mousemove', (e) => {
     const fieldRect = fieldContainer.getBoundingClientRect();
     const deltaX = e.clientX - startX;
     const deltaPercent = (deltaX / fieldRect.width) * 100;
-    const newLeftPercent = Math.max(0, Math.min(92, startLeftPercent + deltaPercent));
+    
+    // Calculate new position within constraints
+    const newLeftPercent = Math.min(
+        movementConstraints.maxLeft, // Maximum left position (60%)
+        Math.max(
+            movementConstraints.minLeft, // Minimum left position (5%)
+            startLeftPercent + deltaPercent
+        )
+    );
     
     attacker.style.left = `${newLeftPercent}%`;
     updateOffsideStatus();
@@ -75,10 +110,11 @@ document.addEventListener('mouseup', () => {
     updatePassingLine();
 });
 
+// Touch events
 attacker.addEventListener('touchstart', (e) => {
     isDragging = true;
     startX = e.touches[0].clientX;
-    startLeftPercent = parseFloat(attacker.style.left || '62.5');
+    startLeftPercent = parseFloat(attacker.style.left || initialPositions.draggableAttacker.left);
     attacker.style.transition = 'none';
     e.preventDefault();
 });
@@ -89,7 +125,15 @@ document.addEventListener('touchmove', (e) => {
     const fieldRect = fieldContainer.getBoundingClientRect();
     const deltaX = e.touches[0].clientX - startX;
     const deltaPercent = (deltaX / fieldRect.width) * 100;
-    const newLeftPercent = Math.max(0, Math.min(92, startLeftPercent + deltaPercent));
+    
+    // Calculate new position within constraints
+    const newLeftPercent = Math.min(
+        movementConstraints.maxLeft, // Maximum left position (60%)
+        Math.max(
+            movementConstraints.minLeft, // Minimum left position (5%)
+            startLeftPercent + deltaPercent
+        )
+    );
     
     attacker.style.left = `${newLeftPercent}%`;
     updateOffsideStatus();
@@ -104,10 +148,14 @@ document.addEventListener('touchend', () => {
     updatePassingLine();
 });
 
+// Reset button
+resetBtn.addEventListener('click', resetPositions);
+
+// Window resize
 window.addEventListener('resize', () => {
     updatePassingLine();
     updateOffsideStatus();
 });
 
-updateOffsideStatus();
-updatePassingLine();
+// Initialize
+resetPositions();

@@ -286,6 +286,7 @@
     #offsideStatus {
         padding: 1% 2%;
     }
+
 }
 
 @media (max-width: 480px) {
@@ -306,4 +307,5 @@
     .instructions {
         font-size: 14px;
     }
+
 }

@@ -78,16 +78,6 @@
     right: 2%;
 }
 
-.soccer-ball {
-    position: absolute;
-    font-size: clamp(10px, 1.2vw, 16px);
-    top: 74%;
-    left: 43%;
-    z-index: 2;
-    transform: scale(0.9);
-    transition: font-size 0.2s ease;
-}
-
 .passing-line {
     position: absolute;
     top: 0;
@@ -179,7 +169,7 @@
     100% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)); }
 }
 
-.attacker:nth-child(5) { top: 62.5%; left: 75%; }
+.attacker:nth-child(5) { top: 62.5%; left: 74%; }
 
 .field-container::after {
     content: '';
@@ -208,10 +198,12 @@
 
 .soccer-ball {
     position: absolute;
-    font-size: clamp(12px, 1.5vw, 20px);
+    font-size: clamp(10px, 1.2vw, 16px);
     top: 74%;
-    left: 79%;
+    left: 80%;
     z-index: 2;
+    transform: scale(0.5);
+    transition: font-size 0.2s ease;
 }
 
 .passing-line {
@@ -282,19 +274,6 @@
 }
 
 @media (max-width: 768px) {
-    .field-container {
-        margin: 10px auto;
-    }
-
-    .player {
-        width: 10%;
-        padding-bottom: 10%;
-    }
-
-    .goalie {
-        width: 9%;
-        padding-bottom: 9%;
-    }
 
     #offsideStatus {
         padding: 1% 2%;
@@ -302,20 +281,6 @@
 }
 
 @media (max-width: 480px) {
-    .field-container {
-        margin: 5px auto;
-    }
-
-    .player {
-        width: 12%;
-        padding-bottom: 12%;
-    }
-
-    .goalie {
-        width: 11%;
-        padding-bottom: 11%;
-    }
-
     .instructions {
         font-size: 14px;
     }

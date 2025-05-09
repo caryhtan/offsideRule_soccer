@@ -3,9 +3,9 @@
     /* Light Theme */
     --color-bg: #f8fafc;
     --color-text: #1e293b;
-    --color-primary: #6366f1;
-    --color-secondary: #8b5cf6;
-    --color-accent: #f59e0b;
+    --color-primary: #22c55e;
+    --color-secondary: #16a34a;
+    --color-accent: #4ade80;
     --color-card-bg: #ffffff;
     --color-card-border: rgba(0, 0, 0, 0.05);
     --color-nav-bg: rgba(255, 255, 255, 0.95);
@@ -13,16 +13,16 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-    --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6);
-    --gradient-secondary: linear-gradient(135deg, #f59e0b, #fbbf24);
+    --gradient-primary: linear-gradient(135deg, #22c55e, #16a34a);
+    --gradient-secondary: linear-gradient(135deg, #4ade80, #5db97f);
 }
 
 [data-theme="dark"] {
     --color-bg: #0f172a;
     --color-text: #e2e8f0;
-    --color-primary: #818cf8;
-    --color-secondary: #a78bfa;
-    --color-accent: #fbbf24;
+    --color-primary: #4ade80; /* lighter green for dark mode */
+    --color-secondary: #22c55e;
+    --color-accent: #86efac;
     --color-card-bg: #1e293b;
     --color-card-border: rgba(255, 255, 255, 0.05);
     --color-nav-bg: rgba(15, 23, 42, 0.95);
@@ -31,6 +31,7 @@
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
+
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
@@ -664,7 +665,7 @@ img {
 
 .lesson-container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2.5fr 1fr;
     gap: 20px;
     align-items: flex-start;
 }
