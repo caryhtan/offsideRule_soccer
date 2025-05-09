@@ -234,6 +234,9 @@ img {
     background-color: var(--color-nav-bg);
     padding: 20px;
     box-shadow: var(--shadow-md);
+    position: absolute;
+    width: 100%;
+    top: 70px;
 }
 
 .mobile-menu ul {
