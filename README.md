@@ -2,8 +2,11 @@
 
 Repo for User Interface Design final project.
 
-Members - Cary Htan
-TA - Christine Lam
+## Members
+- Cary Htan
+
+## TA
+- Christine Lam
 
 ## Run code locally
 
